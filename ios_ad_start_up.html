@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Getting Started tutorial ios Application Integration Ads</title>
+    <meta name="keyword" content="IOS added advertising, Apple integrated advertising tutorials, ios integrated admob tutorials, app integrated advertising tutorials, ios integrated advertising"/>
+    <meta name="description"
+          content="Introduction ios application integration advertising platform sdk. From the get ad libs to use the library, packed the entire process. According to this tutorial ios integrated advertising, will be able to smoothly integrate various advertising platform, no longer requires a separate admob tutorials, gdt tutorials, Baidu Mobile Alliance Access tutorial"/>
+    <link href="doc.css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="doctitle">Integrate Ads in IOS application tutorial </h1>
+
+<h2><a name="download">Download ios Advertising  library</a></h2>
+To display ads in mobile applications need to add ad library to app, 20150801 is the current
+version of Keymob  library , you will find ios project files and directories in the folder you downloaded, the following resources are Keymob library
+ related. <a href="https://github.com/keymobdev/Keymob-Ad-Lib-for-IOS/archive/master.zip">Download IOS lib</a>
+ <ul>
+  <li>README.md keymob quickly integrate document in English</li>
+    <li>README_ios_zh.md keymob quickly integrate document in Chinese</li>
+    <li>keymobsdk
+        <ul>
+            <li>KeymobAd.framework keymob core library</li>
+            <li>plugins  platform SDK library supported by 
+            keymob</li>
+        </ul>
+    </li>
+</ul>
+
+
+you need add libs in plugins to project ,not need other file from ad platform.
+
+<h2><a name="install"> Add library to the Xcode project  </a></h2>
+Using advertising management library need the following a few steps
+<ol>
+    <li>Right-click the xcode project, open the properties, select &quot;add files to the project&quot; menu, add
+        keymobsdk directory to the xcode project
+    </li>
+    <li> Add -fore_load item in Other Linker Flags . For example, using the admob  and inmobi need to add the following items.<br>
+      suppose 
+&quot;$(SRCROOT)/keymobsdk/plugins/&quot; is the keymob library path.
+        <pre class="code">
+-force_load $(SRCROOT)/keymobsdk/plugins/Admob/libAdmobAdapter.a
+-force_load $(SRCROOT)/keymobsdk/plugins/inmobi/libInmobiAdapter.a</pre>
+    </li>
+</ol>
+<p class="note">Note: if you don't add - force_load will not see third-party ads, log message &quot;the platform not support&quot;</p>
+
+<h2><a name="addcode">Add advertising related OC code</a></h2>
+<h5>1.Import keymob header files</h5>
+<pre class="code">
+ #import &lt;KeymobAd/KeymobAd.h&gt;
+</pre>
+<h5>2.Initialize Keymob</h5>
+Initialization Keymob library management is the prerequisite to call other advertising functions, the following initialization method is to use the Keymob.com service
+<pre class="code">
+    [[AdManager sharedInstance] setController: self andListener: [[AdListener alloc] init]];
+    [[AdManager sharedInstance] configWithKeymobService: @ "1" isTesting: YES];
+</pre>
+<p>setController parameters </p>
+
+<ul>
+  <li>&quot;self&quot; the first parameter  is advertising context, not nil </li>
+  <li>&quot;AdListener&quot; the second parameter is the delegate handler ad event implementing IAdEventListener protocol,
+    if you don't plan to deal with advertising events can set it nil </li>
+</ul>
+<p>configWithKeymobService parameters </p>
+
+<ul>
+  <li> &quot;1&quot; is Keymob application ID got from  Keymob.com </li>
+  <li> &quot;YES&quot; the second parameter is the test mode switch,   set to YES when debugging, set to NO when release. </li>
+</ul>
+
+<h5>3.  display advertising</h5>
+Shown below the banner ads in the absolute position (0,200) sample
+<pre class="code">[[AdManager sharedInstance] showBannerABS:BANNER_SIZE_BANNER atX:0 atY:200];</pre>
+<ul>
+    Parameters Description
+    <li>BANNER_SIZE_BANNER the first parameter is AD sizes, all the  supported  banners sizes are constants named
+        BANNER_SIZE_xxx 
+    </li>
+    <li> &quot;0&quot; the second parameter is the location of the advertising x</li>
+    <li>&quot;200&quot; the third parameter is the location of the advertising y</li>
+</ul>
+<p align="center"><a href="index.html">More tutorial of add ad in app</a> &nbsp;&nbsp;<a href="http://shang.qq.com/wpa/qunwpa?idkey=77cede5b3b323b802d818ff476e0c316cfb2c966475e42f02023b2a33d9f8085">qq group 310513042</a> &nbsp;&nbsp;<a href="/index.html">home</a></p>
+
+<div style="display: none"><!-- 用于加载统计代码等隐藏元素 -->
+    <script language="javascript" type="text/javascript" src="http://js.users.51.la/18164801.js"></script>
+    <noscript><a href="http://www.51.la/?18164801" target="_blank"><img
+            alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18164801.asp"
+            style="border:none"/></a></noscript>
+</div>
+</body>
+</html>

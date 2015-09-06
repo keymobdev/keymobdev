@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>cordova relative position display banners Tutorials</title>
+    <meta name="keyword" content="cordova add banner ads, cordova integrated banner ad tutorials, phonegap add admob tutorials, phonegap integrated advertising Tutorials"/>
+    <meta name="description"
+          content="Cordova application describes the relative position of display ads, and by displaying ads at the bottom of html5 application examples illustrate how keymob plugin displays banner ads in phonegap applications"/>
+    <link href="doc.css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="doctitle">Cordova application display banner ads in the relative position</h1>
+
+<h2>The preparation for coding</h2>
+Before reading this tutorial, please read the <a href="cordova_ad_start_up.html">getting started with cordova</a> tutorial to learn <a href="cordova_ad_start_up.html">how to download management library</a>,<a href="cordova_ad_start_up.html"> how to install AD management library</a>
+<h2>Add advertising related Js code</h2>
+<h5>1. Initialization Keymob</h5>
+Initialization Keymob library management is the prerequisite to call other advertising functions, the following initialization method is to use the Keymob.com service
+<pre class="code">keymob.initFromKeymobService("1", true);</pre>
+<ul>
+  Parameter Description
+  <li>&quot;1&quot; the first parameter is the ID Keymob application, at Keymob.com for creating an application
+    ID </li>
+  <li> &quot;true&quot; &quot;false&quot;&nbsp;Whether&nbsp;testing&nbsp;mode,&nbsp;set&nbsp;to&nbsp;true when debug,&nbsp;set&nbsp;false when&nbsp;released</li>
+</ul>
+<h5>2.Display advertising</h5>
+Show banner ads in the relative position location at the center bottom of the app
+<pre class="code">
+   keymob.showBannerRelation(keymob.AdSize.BANNER,keymob.AdPosition.BOTTOM_CENTER,0);
+</pre>
+<ul>
+    Parameter Description
+      <li> BannerSizes.BANNER first parameter Ad size, all the default support advertising banners size are in
+        BannerSizes class,</li>
+      <li> BannerPositions.BOTTOM_CENTER the second parameter is the relative position of advertising</li>
+      <li>&quot; 0&quot; the third parameter is the padding y</li>
+</ul>
+<h2>Processing for each platform </h2>
+After add the code, in accordance with the <a href="cordova_ad_start_up.html">previous tutorial</a>,  processing for <a href="cordova_ad_start_up.html#androidnote">android</a> and <a href="cordova_ad_start_up.html#iosnote">ios</a>
+<p align="center"><a href="index.html">More tutorial of add ad in app</a> &nbsp;&nbsp;<a href="http://shang.qq.com/wpa/qunwpa?idkey=77cede5b3b323b802d818ff476e0c316cfb2c966475e42f02023b2a33d9f8085">qq group 310513042</a> &nbsp;&nbsp;<a href="/index.html">home</a></p>
+
+<div style="display: none"><!-- 用于加载统计代码等隐藏元素 -->
+    <script language="javascript" type="text/javascript" src="http://js.users.51.la/18164801.js"></script>
+    <noscript><a href="http://www.51.la/?18164801" target="_blank"><img
+            alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18164801.asp"
+            style="border:none"/></a></noscript>
+</div>
+</body>
+</html>

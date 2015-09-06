@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Keymob ANE For Flash Air Android and IOS</title>
+    <link href="../tutorial_zh/doc.css" rel="stylesheet"/>
+</head>
+
+<body>
+<h1>Using the Keymob Adobe AIR native extension for Android and IOS</h1>
+
+<p align="left">&nbsp;</p>
+
+<p align="left">With the Keymob Extension for Android and IOS from www.keymob.com, you can rapidly integrate Google
+    AdMob ads ,Chartboost,Inmobi,Iad ,MMedia,Adcolony,Amazon,Baidu and GDT into your mobile AIR application using
+    ActionScript 3.<br>
+    The Keymob Extension for Android and IOS is a 100 percent native Java and OC solution that enables you to:</p>
+<ul>
+    <li>Monetize free games via Keymob,Google AdMob Chartboost,Inmobi,Iad ,MMedia,Adcolony,Amazon,Baidu and GDT</li>
+    <li>Display your first ad with just two lines of code</li>
+    <li>Jumpstart development with a complete sample application, ActionScript 3 documentation, and a getting started
+        guide
+    </li>
+    <li>Reposition ads automatically when your app changes orientation</li>
+</ul>
+<p align="left">Support banner, Interstitial,video,More APP formats on both phones and tablets</p>
+<ul>
+    <li>Register your test devices so you can develop without affecting your metrics</li>
+    <li>Create, destroy, show, and hide ads with simple commands</li>
+    <li> Adjusted using the advertising platform at any time</li>
+</ul>
+<p align="left">This tutorial provides details on getting started with the Keymob IOS and Android extension. If you want
+    to follow all the steps below, you'll need to download the&nbsp;<u><a
+            href="https://github.com/keymobdev/Adobe-Air-ANE" target="_blank">AdMob Android extension.</a></u> <br>
+    <strong>Including the Keymob API Library</strong><br>
+    The first step in using the Keymob extension is to add the <a
+            href="https://github.com/keymobdev/Adobe-Air-ANE/blob/master/anes/keymob1.0.ane" title="keymob1.0.ane">keymob1.0.ane</a>
+    library to your project. <br>
+    In Flash Professional CC:</p>
+<ul>
+    <li>Create a new project of the type AIR for Android.</li>
+    <li>Choose File &gt; Publish Settings.</li>
+    <li>Click the wrench icon next to Script for ActionScript Settings.</li>
+    <li>Select the Library Path tab.</li>
+    <li>Click Browse For Native Extension (ANE) File and select the  <a
+            href="https://github.com/keymobdev/Adobe-Air-ANE/blob/master/anes/keymob1.0.ane" title="keymob1.0.ane">keymob1.0.ane</a>
+        file.
+    </li>
+</ul>
+<p align="left"><img border="0" width="459" height="683" src="clip_image001.jpg"> <br>
+    In Flash Builder 4.6:</p>
+<ul>
+    <li>Go to Project Properties (right-click your project in Package Explorer and select Properties).</li>
+    <li>Select ActionScript Build Path and click the Native Extensions tab.</li>
+    <li>Click Add ANE and navigate to the  <a
+            href="https://github.com/keymobdev/Adobe-Air-ANE/blob/master/anes/keymob1.0.ane" title="keymob1.0.ane">keymob1.0.ane</a>
+        file.
+    </li>
+</ul>
+<p align="left"><img border="0" width="554" height="498" src="clip_image003.jpg"> <br>
+    <img border="0" width="554" height="427" src="clip_image005.jpg"> <br>
+    In FlashDevelop:</p>
+<ul>
+    <li>Copy and rename <a href="https://github.com/keymobdev/Adobe-Air-ANE/blob/master/anes/keymob1.0.ane"
+                           title="keymob1.0.ane">keymob1.0.ane</a> to  keymob1.0.swc ,then copy file to your project
+        folder.
+    </li>
+    <li>In the explorer panel, right-click the SWC and select Add To Library.</li>
+    <li>Right-click the SWC file in the explorer panel again, select Options, and then select External Library.</li>
+</ul>
+<p align="left"><strong>Getting started with the Keymob extension API</strong><br>
+    You can get your code up and running with the Keymob extension with a few simple calls. See&nbsp;keymobdemo.as for a
+    full example that shows how to handle errors, destroy and refresh ads, set ad visibility, and handle ad status
+    changes.<br>
+    Follow these steps to get started:</p>
+
+<p align="left">Import the API Classes:</p>
+<pre class="code"> import com.keymob.*;</pre>
+<ol start="2" type="1">
+    <li>Verify that Keymob is supported on your current platform, using the&nbsp;KeymobAd.getInstance().supportDevice&nbsp;property,
+        and initialize the API with your AdMob publisher ID (you can retrieve your publisher ID from the AdMob web site
+        control panel):
+    </li>
+</ol>
+<pre class="code">if(KeymobAd.getInstance(). supportDevice)
+  {
+  KeymobAd.getInstance().initFromKeymobService(&quot;app  id&quot;);
+  } else
+  {
+  trace(&ldquo;Keymob only runs on Android and IOS  device.&rdquo;);
+  return;
+}
+</pre>
+<ul>
+    <li>Show your first ad. The following call displays a banner ad, with bottom-left alignment and padding y 0:</li>
+</ul>
+<pre class="code">KeymobAd.getInstance().showRelationBanner(AdSizes.BANNER,AdPositions.BOTTOM_CENTER,0); </pre>
+<ul>
+    <li>To avoid making ad impressions while testing, you can set test mode when init keymobad</li>
+</ul>
+<pre class="code">KeymobAd.getInstance().initFromKeymobService(&quot;app  id&quot;,true); </pre>
+<p align="left">
+    Note: Chang Test mode to false when release your app.</p>
+<ol start="5" type="1">
+    <li>To use absolute pixel positions for your ad you can supply x and y offsets as the second and third parameters
+        showBannerABS()&nbsp;respectively. Note that the pixel offsets are relative to the true size of the screen
+        (which you can read withstage.stageWidth&nbsp;and&nbsp;stage.stageHeight&nbsp;) as the Keymob extension has no
+        knowledge of any scaling being done by AIR (with the&nbsp;fullscreen&nbsp;property or otherwise). The following
+        example shows an ad at the pixel position 20, 32 (relative to top left of the device):
+    </li>
+</ol>
+<pre class="code">KeymobAd.getInstance().showBannerABS  (AdSizes. FULL_BANNER, 0,32); </pre>
+
+<strong>Updating your AIR application descriptor file</strong><br>
+You need to configure your AIR application descriptor file to use the AIR 17.0 SDK (or later), include the Keymob
+extension, and update the Android manifest additions with some Keymob specific settings. For a working example, see
+keymobdemo-app.xml.</p>
+<ul>
+    <li>Set your AIR SDK to 17.0 or later in the app descriptor file:</li>
+</ul>
+<pre class="code">&lt;application  xmlns=&quot;http://ns.adobe.com/air/application/17.0&quot;&gt; </pre>
+<ul>
+    <li>Include a link to the extension in the descriptor:</li>
+</ul>
+<pre class="code">&lt;extensions&gt;
+  &lt;extensionID&gt; com.keymob.KeymobAd&lt;/extensionID&gt;
+&lt;/extensions&gt;</pre>
+<ul>
+    <li>Update your Android manifest additions. The&nbsp;android.permission.INTERNET&nbsp;and
+        android.permission.ACCESS_NETWORK_STATE&nbsp;permissions must be present for Keymob  to work. You also must add
+        the&nbsp;&nbsp;activity of third platform within the&nbsp;&lt;application&gt;&nbsp;element, as shown below:
+    </li>
+</ul>
+<pre class="code">&lt;android&gt;
+  &lt;manifestAdditions&gt;&lt;![CDATA[
+  &lt;manifest android:installLocation=&quot;auto&quot;&gt;
+  &lt;uses-permission  android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;
+  &lt;uses-permission  android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot;/&gt;
+  &lt;uses-permission  android:name=&quot;android.permission.READ_PHONE_STATE&quot;/&gt;
+  &lt;uses-permission  android:name=&quot;android.permission.INTERNET&quot;/&gt;
+  &lt;uses-permission  android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;
+  &lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot;  /&gt;
+  &lt;uses-permission  android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt;              
+  </pre>
+  <pre class="code">
+  
+  &lt;application  &gt;
+  
+  &lt;!-- Admob Mobile Ads  --&gt;
+  &lt;meta-data  android:name=&quot;com.google.android.gms.version&quot;  android:value=&quot;7327000&quot; /&gt;
+  &lt;activity   android:name=&quot;com.google.android.gms.ads.AdActivity&quot;  <br>android:configChanges=&quot;keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize&quot; <br> android:theme=&quot;@android:style/Theme.Translucent&quot;/&gt;
+  
+  &lt;!-- Amazon Mobile  Ads --&gt;
+&lt;activity  android:name=&quot;com.amazon.device.ads.AdActivity&quot;  android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;/&gt;
+&lt;!-- InMobi --&gt;
+  &lt;activity android:name=&quot;com.inmobi.androidsdk.IMBrowserActivity&quot;  <br>android:configChanges=&quot;keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize&quot;  <br>android:theme=&quot;@android:style/Theme.Translucent.NoTitleBar&quot;  android:hardwareAccelerated=&quot;true&quot; /&gt;
+&lt;!-- Millennial Media  --&gt;
+  &lt;activity  android:name=&quot;com.millennialmedia.android.MMActivity&quot;  <br>android:theme=&quot;@android:style/Theme.Translucent.NoTitleBar&quot;  <br>android:configChanges=&quot;keyboardHidden|orientation|keyboard|screenSize&quot;  &gt;&lt;/activity&gt;
+&lt;!-- Keymob  --&gt;      
+  &lt;activity android:name=&quot;com.keymob.sdk.core.KeymobActivity&quot;    android:theme=&quot;@android:style/Theme.Dialog&quot;  <br>android:configChanges=&quot;keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize&quot;  /&gt;
+  
+  &lt;!-- baidu --&gt;
+  &lt;activity  android:name=&quot;com.baidu.mobads.AppActivity&quot;  android:configChanges=&quot;keyboard|keyboardHidden|orientation&quot;/&gt;
+  
+  &lt;!-- adcolony --&gt;     
+  &lt;activity  android:name=&quot;com.jirbo.adcolony.AdColonyOverlay&quot;  <br>android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;  <br>android:theme=&quot;@android:style/Theme.Translucent.NoTitleBar.Fullscreen&quot;  /&gt;
+  &lt;activity  android:name=&quot;com.jirbo.adcolony.AdColonyFullscreen&quot; <br> android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot; <br> android:theme=&quot;@android:style/Theme.Black.NoTitleBar.Fullscreen&quot;  /&gt;
+  &lt;activity  android:name=&quot;com.jirbo.adcolony.AdColonyBrowser&quot;  <br>android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot; <br> android:theme=&quot;@android:style/Theme.Black.NoTitleBar.Fullscreen&quot;  /&gt;<br>
+&lt;!-- gdt --&gt;     
+  &lt;service  android:name=&quot;com.qq.e.comm.DownloadService&quot;  android:exported=&quot;false&quot;/&gt;
+  &lt;activity  android:name=&quot;com.qq.e.ads.ADActivity&quot; <br> android:configChanges=&quot;keyboard|keyboardHidden|orientation|screenSize&quot;/&gt;
+  &lt;/application&gt;
+  &lt;/manifest&gt;
+  ]]&gt;&lt;/manifestAdditions&gt; &lt;/android&gt;
+  </pre>
+<strong>Building and troubleshooting the application</strong><br>
+If you're using Flash Builder 4.6 or later, or Flash Professional CS6 or later, and have added the Keymob IOS and
+Android extension library as described above, then you can compile as you usually do directly from the IDE. If not and
+you are building your app with the extension from the command line, then you'll need to specify the directory containing
+the keymob1.0.ane file.<br>
+Here is an example build command line:<br>
+  <pre class="code">
+  [PATH_TO_AIR_SDK]\bin\adt -package  -target apk-debug -storetype pkcs12 –keystore [YOUR_KEYSTORE_FILE] -storepass  <br>[YOUR_PASSWORD] anesample.apk app.xml anesample.swf –extdir  [DIRECTORY_CONTAINING_ANE_FILE] </pre>
+If you're having trouble displaying ads, try these tips:
+<ul type="disc">
+    <li>Ensure that your publisher ID is correctly set via&nbsp;KeymobAd.getInstance().initFromKeymobService(). And you
+        have set your ad id in www.keymob.com
+    </li>
+</ul>
+<ul>
+    <li>Check for error<em>s&nbsp;</em>retrieving ads by listening for the&nbsp;ON_LOADED_FAIL&nbsp;event:</li>
+</ul>
+<p align="left">KeymobAd.getInstance().addEventListener(AdEvent.ON_LOADED_FAIL, onFailedReceiveAd); </p>
+<ul type="disc">
+    <li>Make sure you have Updating your AIR application descriptor file.</li>
+</ul>
+<p align="left"><strong>Where to go from here</strong><br>
+    Now that you have the Keymob Android and ios extension up and running, you may want to explore the&nbsp;<a
+            href="http://www.keymob.com/article/lists/category/air_doc.html" target="_blank">ActionScript 3
+        documentation</a>&nbsp;or check out the other&nbsp;<u><a href="https://github.com/keymobdev/" target="_blank">tools
+        from available from Keymob.com. </a></u></p>
+</body>
+</html>

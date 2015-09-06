@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ios display banner ads Tutorial</title>
+    <meta name="keyword" content="ios add banner ads, ios integrated banner advertising tutorials, ios integrated admob tutorials, ios display ads Tutorial"/>
+    <meta name="description" content="Introduction ios app to show ads on the relative position, by displaying ads on the bottom of ios application example shows how to display banner ads in ios applications"/>
+    <link href="doc.css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="doctitle">IOS application display banner ads in the relative position </h1>
+
+<h2>The preparation for coding</h2>
+Before reading this tutorial, please read the <a href="ios_ad_start_up.html">Getting start with ios ads </a>to learn <a href="ios_ad_start_up.html">how to library</a>, <a href="ios_ad_start_up.html">how to install  library</a>
+<h2>Add advertising related OC code</h2>
+<h5>1.add  header files</h5>
+<pre class="code">
+ #import &lt;KeymobAd/KeymobAd.h&gt;
+</pre>
+<h5>2.Initialize Keymob</h5>
+Initialization Keymob library management is the prerequisite to call other advertising functions, the following initialization method is to use the Keymob.com service
+<pre class="code">
+    [[AdManager sharedInstance] setController: self andListener: [[AdListener alloc] init]];
+    [[AdManager sharedInstance] configWithKeymobService: @ "1" isTesting: YES];
+</pre>
+<p>setController parameters </p>
+<ul>
+  <li>&quot;self&quot; the first parameter  is advertising context, not nil </li>
+  <li>&quot;AdListener&quot; the second parameter is the delegate handler ad event implementing IAdEventListener protocol,
+    if you don't plan to deal with advertising events can set it nil </li>
+</ul>
+<p>configWithKeymobService parameters </p>
+<ul>
+  <li> &quot;1&quot; is Keymob application ID got from  Keymob.com </li>
+  <li> &quot;YES&quot; the second parameter is the test mode switch,   set to YES when debugging, set to NO when release. </li>
+</ul>
+<h5>3. Display advertising</h5>
+Show banner ads in the relative position location at the center bottom of the app
+<pre class="code">[[AdManager sharedInstance] showRelationBanner:BANNER_SIZE_BANNER atPosition:BANNER_POSITIONS_BOTTOM_CENTER withOffY:80];</pre>
+<ul>
+    Parameters Description
+    <li>BANNER_SIZE_BANNER the first parameter is AD sizes, all the  supported  banners sizes are constants named
+        BANNER_SIZE_xxx    </li>
+    <li>BANNER_POSITIONS_BOTTOM_CENTER the first parameter is AD sizes, all the  supported  banners position are constants named
+        BANNER_POSITIONS_xxx 
+    </li>
+    <li>&quot;80&quot; the third parameter is padding y</li>
+
+</ul>
+<p align="center"><a href="index.html">More tutorial of add ad in app</a> &nbsp;&nbsp;<a href="http://shang.qq.com/wpa/qunwpa?idkey=77cede5b3b323b802d818ff476e0c316cfb2c966475e42f02023b2a33d9f8085">qq group 310513042</a> &nbsp;&nbsp;<a href="/index.html">home</a></p>
+</body>
+</html>

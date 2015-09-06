@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>cordova Application Integration Ads Start Tutorial</title>
+    <meta name="keyword"
+          content="cordova add advertising, phonegap integrated advertising Tutorials, html5 integration admob tutorials, cordova integrated advertising introductory tutorial, html5 mobile applications, advertising platforms SdK, phonegap ad plugin, cordova plugin "/>
+    <meta name="description"
+          content="Introduction html5 cordova integrated mobile application advertising platform sdk tutorial, from the download cordova plugin to use, pack app the entire process. According to this cordova integrated advertising tutorial, you will be able to successfully integrate Baidu, admob other advertising platforms. phonegap admob tutorial, cordova gdt Tutorials, html5 Baidu integrated tutorial Mobile Alliance is no longer required"/>
+    <link href="doc.css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="doctitle"> Integrate  advertising in cordova application</h1>
+
+<h2><a name="download">Obtain Phonegap advertising plugin (cordova advertising platform plugin) </a></h2>
+To display ads in mobile applications need to ads plugins, 20150801 is the current
+version of ad management plugin Keymob,  you wil see that the plugin contains common plugin files  SRC, WWW, plugin.xml, as well as example, iosadapter,
+readme.md, readme_zh.md
+<ul>
+  <li>README.md keymob quickly integrate document in English</li>
+    <li>README_zh.md keymob quickly integrate document in Chinese</li>
+    <li>src Keymob advertising management library code ios and android code</li>
+    <li>www Keymob advertising plugin js  modules</li>
+    <li>Example advertising management plugin Example files</li>
+    <li> iosadapters ios adapter and third-party advertising platform SDK</li>
+</ul>
+<h2><a name="install">Add advertising management plugin to cordova project</a></h2>
+Add using advertising management library need the following a few steps
+<ol>
+    <li> <a href="https://github.com/keymobdev/phonegap-plugins">Download</a> and unpack keymob advertising management plugin </li>
+    <li> Use the command to install the plugin, assuming that path of the plugin is d: \ keymobplugin
+        <pre class="code">cordova plugin add d:\keymobplugin</pre>
+    </li>
+</ol>
+
+<h2><a name="addcode">Add advertising related js code</a></h2>
+<h5>1. Initialization Keymob</h5>
+Initialization Keymob library management is the prerequisite to call other advertising functions, the following initialization method is to use the Keymob.com service
+<pre class="code">keymob.initFromKeymobService("1", true);</pre>
+<ul>
+    Parameter Description
+    <li>&quot;1&quot; the first parameter is the ID Keymob application, at Keymob.com for creating an application
+        ID
+    </li>
+    <li> &quot;true&quot; &quot;false&quot;&nbsp;Whether&nbsp;testing&nbsp;mode,&nbsp;set&nbsp;to&nbsp;true when debug,&nbsp;set&nbsp;false when&nbsp;released</li>
+</ul>
+<h5>2.The display advertising</h5>
+Shown  the banner ads at the absolute position (0,200) 
+<pre class="code">	keymob.showBannerAbsolute(keymob.AdSize.BANNER,0,200);</pre>
+<ul>
+    <li>Parameters that</li>
+    <li>AdSizes.BANNER the first parameter is size, all the default support advertising banners size in AdSizes
+        class
+    </li>
+    <li> &quot;0&quot; the second parameter is the location of  x</li>
+    <li>&quot;200&quot; the second parameter is the location of y</li>
+</ul>
+<h2><a name="iosnote">Processing for IOS project </a></h2>
+You need add the platform libraries to the project path, open the project with xcode, then right-click on the
+project, select  &quot;add files to project&quot; , choose files under folder iosadapters . If use gdt, you
+need to add -lstdc++ to Other Linker Flags. 
+<h2><a name="androidnote">Optimization for android</a></h2>
+<p>Generated in the android project assets directory below there are three folders,</p>
+<p> biduad_plugin is <a href="union.baidu.com">baidu</a> platform
+resources, if you do not use baidu advertising you can  deleted it </p>
+<p>gdt_plugin is <a href="e.qq.com/dev/">gdt</a> reqired files, if not
+used gdt ads can be deleted</p>
+<p>com_keymob_sdks is <a href="http://www.keymob.com">Keymob</a> default advertising platform, you can change it to other platform
+  https://github.com/keymobdev/admob-adapter <br/>
+  Note:these 3 folder  name cannot be modified
+</p>
+<p align="center"><a href="index.html">More tutorial of add ad in app</a> &nbsp;&nbsp;<a href="http://shang.qq.com/wpa/qunwpa?idkey=77cede5b3b323b802d818ff476e0c316cfb2c966475e42f02023b2a33d9f8085">qq group 310513042</a> &nbsp;&nbsp;<a href="/index.html">home</a></p>
+
+<div style="display: none"><!-- 用于加载统计代码等隐藏元素 -->
+    <script language="javascript" type="text/javascript" src="http://js.users.51.la/18164801.js"></script>
+    <noscript><a href="http://www.51.la/?18164801" target="_blank"><img
+            alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18164801.asp"
+            style="border:none"/></a></noscript>
+</div>
+</body>
+</html>

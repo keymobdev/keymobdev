@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Configuration of  popular advertising platforms</title>
+    <meta name="keyword" content="android advertising alliance, baidu advertising alliance, admob ad networks, ad SDK configuration, ad network integration"/>
+    <meta name="description"
+          content="This is a popular advertising network configuration file notes, including Baidu ad network configuration information, admob ad networks, gdt ad networks, chartboost ad networks, adcolony ad networks, etc."/>
+    <link href="doc.css" rel="stylesheet"/>
+</head>
+<body>
+<h2 class="doctitle">Popular  advertising platforms require configuration file</h2>
+Required configuration of each platform of AndroidManifest.xm ,app will not
+be able to display advertising platform if not add platform config
+<pre class="code">
+    &lt;!--AdmobAdvertising platform configuration information --&gt;<br>
+<p> &lt;meta-data android:name=&quot;com.google.android.gms.version&quot;<br>
+    android:value=&quot;7327000&quot; /&gt;<br>
+    &lt;activity<br>
+    android:name=&quot;com.google.android.gms.ads.AdActivity&quot;<br>
+    android:configChanges=&quot;keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize&quot;<br>
+    android:theme=&quot;@android:style/Theme.Translucent&quot;/&gt;<br>
+    <br>
+    &lt;!--AmazonAdvertising platform configuration information --&gt;<br>
+    &lt;activity android:name=&quot;com.amazon.device.ads.AdActivity&quot;<br>
+    android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;/&gt;</p>
+<p>&lt;!-- InMobiAdvertising platform configuration information --&gt;<br>
+    &lt;activity android:name=&quot;com.inmobi.androidsdk.IMBrowserActivity&quot;<br>
+    android:configChanges=&quot;keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize&quot;<br>
+    android:theme=&quot;@android:style/Theme.Translucent.NoTitleBar&quot;<br>
+    android:hardwareAccelerated=&quot;true&quot; /&gt;<br>
+</p>
+<p>&lt;!-- Millennial MediaAdvertising platform configuration information---&gt;<br>
+    &lt;activity android:name=&quot;com.millennialmedia.android.MMActivity&quot;<br>
+    android:theme=&quot;@android:style/Theme.Translucent.NoTitleBar&quot;<br>
+    android:configChanges=&quot;keyboardHidden|orientation|keyboard|screenSize&quot; &gt;&lt;/activity&gt;</p>
+<p>&lt;!-- Keymob Cross promote configuration information --&gt; <br>
+    &lt;activity android:name=&quot;com.keymob.sdk.core.KeymobActivity&quot; android:theme=&quot;@android:style/Theme.Dialog&quot;<br>
+    android:configChanges=&quot;keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize&quot;
+    <br>
+    /&gt;<br>
+    &lt;!-- baiduAdvertising platform configuration information-&gt; --&gt; <br>
+    &lt;activity android:name=&quot;com.baidu.mobads.AppActivity&quot; android:configChanges=&quot;keyboard|keyboardHidden|orientation&quot;/&gt;
+</p>
+<p>&lt;!-- adcolonyAdvertising platform configuration information-&gt; --&gt; <br>
+    &lt;activity android:name=&quot;com.jirbo.adcolony.AdColonyOverlay&quot; android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;
+    <br>
+    android:theme=&quot;@android:style/Theme.Translucent.NoTitleBar.Fullscreen&quot; /&gt;<br>
+    &lt;activity android:name=&quot;com.jirbo.adcolony.AdColonyFullscreen&quot; android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;
+    <br>
+    android:theme=&quot;@android:style/Theme.Black.NoTitleBar.Fullscreen&quot; /&gt;<br>
+    &lt;activity android:name=&quot;com.jirbo.adcolony.AdColonyBrowser&quot; android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;
+    <br>
+    android:theme=&quot;@android:style/Theme.Black.NoTitleBar.Fullscreen&quot; /&gt;</p>
+<p>&lt;!-- Broad points through advertising platform configuration information --&gt; <br>
+    &lt;service android:name=&quot;com.qq.e.comm.DownloadService&quot; android:exported=&quot;false&quot;/&gt;<br>
+    &lt;activity android:name=&quot;com.qq.e.ads.ADActivity&quot; android:configChanges=&quot;keyboard|keyboardHidden|orientation|screenSize&quot;/&gt;<br>
+</p>
+</pre>
+<p align="center"><a href="index.html">More tutorial of add ad in app</a> &nbsp;&nbsp;<a href="http://shang.qq.com/wpa/qunwpa?idkey=77cede5b3b323b802d818ff476e0c316cfb2c966475e42f02023b2a33d9f8085">qq group 310513042</a> &nbsp;&nbsp;<a href="/index.html">home</a></p>
+
+<div style="display: none"><!-- 用于加载统计代码等隐藏元素 -->
+    <script language="javascript" type="text/javascript" src="http://js.users.51.la/18164801.js"></script>
+    <noscript><a href="http://www.51.la/?18164801" target="_blank"><img
+            alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18164801.asp"
+            style="border:none"/></a></noscript>
+</div>
+</body>
+</html>

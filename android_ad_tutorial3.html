@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>android application integration tutorial video ads</title>
+    <meta name="keyword" content="Adnroid integrated video ads, android added advertising tutorial, android money, app insert advertising Tutorials"/>
+    <meta name="description" content="How to insert ads in Android applications, Android developers how to use the android to make money? This tutorial teaches you step by step to integrate video ads into their applications to make money"/>
+    <link href="doc.css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="doctitle">Android application display Video Ads</h1>
+
+<h2>The preparation for coding</h2>
+Before reading this tutorial, please read the android ads based tutorial to learn how to get access management of
+library, how to install AD management library, how to add advertising platform configuration information
+<h2><a name="addcode">Add advertising related Java code</a></h2>
+
+<h5>1. import keymob related classes</h5>
+<pre class="code">    import com.keymob.networks.AdManager;
+    import com.keymob.networks.core.*;<br>    import com.keymob.sdk.core.AdTypes;
+</pre>
+<h5>2.set the parameters of ad platforms</h5>
+Platform parameters in json format as follow 
+<pre class="code">
+    	{
+		"isTesting":true,//Whether the test mode
+		"rateModel":1,//Advertising platform collation, 0 means is the priority weights, 
+//different platform scale display ads, 1 is the priority order, the platform to display ads in sequence	
+		"platforms":[
+		{"class":"AdmobAdapter","priority":90,"key1":"ca-app-pub-xxx/xxx","key2":"ca-app-pub-xxx/xxx"},
+//admob platforms ,key1 banner ID，key2 full screen id
+		{"class":"AmazonAdapter","priority":20,"key1":"xxx"},//amazon platform ,key1 appkey
+		{"class":"ChartboostAdapter","priority":40,"key1":"xxx","key2":"xxx"},
+//chartboost platform ,key1 appID，key2 signature
+		{"class":"InmobiAdapter","priority":50,"key1":"xxx"},//inmobi platform ,key1 appid
+		{"class":"IadAdapter","priority":50,"key1":"877393773"},
+//iad platform ,androidandroid Will automatically be ignored
+		{"class":"KeymobAdapter","priority":50,"key1":"appid"},
+//keymob.com Since the sale of advertising, cross promotion needs	
+		{"class":"BaiduAdapter","priority":50,"key1":"appsid","key2":"appsec"},//baidu platform
+    {"class":"GDTAdapter","priority":50,"key1":"appid","key2":"banner id","param":"full id"},//wide point  platform
+    {"class":"AdcolonyAdapter","priority":50,"key1":"appid","key2":"full id","param":"video id"},//adcolony platform
+		{"class":"MMediaAdapter","priority":10,"key1":"xxx","key2":"xxx"}
+//mmedia platform ,key1 banner ID，key2full screenid
+		]
+	}
+</pre>
+<h5>3.Initialization Keymob</h5>
+Initialization Keymob library management is the prerequisite to call other advertising functions , the following  is to init with the Keymob.com service
+<pre class="code">AdManager.getInstance().initFromKeymobService(this, "1", new AdEventListener(), false);</pre>
+<ul>
+  Parameter Description
+  <li>“this”  the first parameter is AD context, not null</li>
+  <li> &quot;1&quot; the second parameter is the Keymob
+    application ID</li>
+  <li> &quot;AdEventListener&quot; Ad event handler impliments IAdEvenntlistener, if you don't plan to deal with
+    advertising events can be null </li>
+  <li>&quot;false&quot;  test mode,set to true when debug, set  to false when released.</li>
+</ul>
+<h5>4.Load the video advertising</h5>
+<pre class="code">AdManager.getInstance().loadVideo();</pre>
+<h5>5.Check&nbsp;whether&nbsp;the&nbsp;video&nbsp;advertising&nbsp;is&nbsp;loaded&nbsp;successfully </h5>
+<pre class="code">AdManager.getInstance().isVideoReady();</pre>
+<h5>6.Show video advertising</h5>
+<pre class="code">AdManager.getInstance().showVideo();</pre>
+<h5>7.Android display video ads</h5>
+Display ads before loading, the following style is a well way
+<pre class="code">
+    if(AdManager.getInstance().isVideoReady()){
+		AdManager.getInstance().showVideo();
+	}
+</pre>
+<h2>Configuration changes</h2>
+After writing the code, in accordance with the <a href="android_ad_start_up.html">previous tutorial</a>, <a href="android_ad_start_up.html#permission">add permissions configuration</a> and Activity
+configuration information
+<p align="center"><a href="index.html"></a><a href="index.html">More tutorial of add ad in app</a> &nbsp;&nbsp;<a href="http://shang.qq.com/wpa/qunwpa?idkey=77cede5b3b323b802d818ff476e0c316cfb2c966475e42f02023b2a33d9f8085">qq group 310513042</a> &nbsp;&nbsp;<a href="/index.html">home</a></p>
+
+<div style="display: none"><!-- 用于加载统计代码等隐藏元素 -->
+    <script language="javascript" type="text/javascript" src="http://js.users.51.la/18164801.js"></script>
+    <noscript><a href="http://www.51.la/?18164801" target="_blank"><img
+            alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18164801.asp"
+            style="border:none"/></a></noscript>
+</div>
+</body>
+</html>

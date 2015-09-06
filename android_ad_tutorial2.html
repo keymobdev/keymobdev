@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Interstitial advertising android tutorial</title>
+    <meta name="keyword" content="Adnroid add Interstitial advertising, android integrated full screen tutorial, android Interstitial display admob tutorial, android Access splash screen ad"/>
+    <meta name="description"
+          content="Android games and applications how integrated table plaque advertising? Here are step by step how to get management library, how to use advertising platform sdk, android how integrated full-screen advertising. A complete tutorial about the application process integrated advertising"/>
+    <link href="doc.css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="doctitle">Android application display Interstitial Ads tutorial</h1>
+
+<h2>The preparation for coding</h2>
+Before reading this tutorial, please read the<a href="android_ad_start_up.html"> getting startted with android ads</a> to learn <a href="android_ad_start_up.html#download">how to get library</a>, <a href="android_ad_start_up.html#install">how to install AD  library</a>, <a href="android_ad_start_up.html#permission">how to add configuration information</a>
+<h2><a name="addcode">Add advertising related Java code</a></h2>
+<h5>1.The first import keymob related classes</h5>
+<pre class="code">    import com.keymob.networks.AdManager;
+    import com.keymob.networks.core.*;<br>    import com.keymob.sdk.core.AdTypes;
+</pre>
+<h5>2.Initialization Keymob</h5>
+Initialization Keymob library management is the prerequisite to call other advertising functions , the following  is to init with the Keymob.com service
+<pre class="code">AdManager.getInstance().initFromKeymobService(this, "1", new AdEventListener(), false);</pre>
+<ul>
+  Parameter Description
+  <li>“this”  the first parameter is AD context, not null</li>
+  <li> &quot;1&quot; the second parameter is the Keymob
+    application ID</li>
+  <li> &quot;AdEventListener&quot; Ad event handler impliments IAdEvenntlistener, if you don't plan to deal with
+    advertising events can be null </li>
+  <li>&quot;false&quot;  test mode,set to true when debug, set  to false when released.</li>
+</ul>
+<h5>3. Loading ads </h5>
+<pre class="code">AdManager.getInstance().loadInterstitial();</pre>
+<h5>4.Check whether advertising  load successfully</h5>
+<pre class="code">AdManager.getInstance().isInterstitialReady();</pre>
+<h5>5.Display advertising</h5>
+<pre class="code">AdManager.getInstance().showInterstitial();</pre>
+<h5>6.Android display Interstitial advertising</h5>
+Display ads before loading, the following style is a well way
+<pre class="code">
+   if(AdManager.getInstance().isInterstitialReady()){
+		AdManager.getInstance().showInterstitial();
+	}
+</pre>
+<h5>7. Monitor advertising events</h5>
+In Interstitial advertising can show at the end of the game or show it manual ,or can be shown when  loaded 
+<pre class="code">
+    	class AdEventListener implements IAdEventListener {
+		@Override
+		public void onLoadedSuccess(int arg0, Object arg1,
+				PlatformAdapter arg2) {
+			Log.d(TAG, arg2+" onLoadedSuccess for type "+arg0 +" withdata "+arg1);
+			if(arg0==AdTypes.INTERSTITIAL){
+				((IInterstitialPlatform)arg2).showInterstitial();//show ad when load success 
+			}
+		}
+
+		@Override
+		public void onLoadedFail(int arg0, Object arg1, PlatformAdapter arg2) {
+			Log.d(TAG, arg2+" onLoadedFail for type "+arg0 +" withdata "+arg1);
+		}
+
+		@Override
+		public void onAdOpened(int arg0, Object arg1, PlatformAdapter arg2) {
+			Log.d(TAG, arg2+" onAdOpened for type "+arg0 +" withdata "+arg1);
+		}
+
+		@Override
+		public void onAdClosed(int arg0, Object arg1, PlatformAdapter arg2) {
+			Log.d(TAG, arg2+" onAdClosed for type "+arg0 +" withdata "+arg1);
+		}
+
+		@Override
+		public void onAdClicked(int arg0, Object arg1, PlatformAdapter arg2) {
+			Log.d(TAG, arg2+" onAdClicked for type "+arg0 +" withdata "+arg1);
+		}
+
+		@Override
+		public void onOtherEvent(String eventName, int adtype, Object data,
+				PlatformAdapter adapter) {
+			Log.d(TAG, adapter+" onLoadedSuccess for type"+adtype +" withEvent "+eventName);
+		}
+	}
+</pre>
+<h2>Configuration changes</h2>
+After writing the code, in accordance with the <a href="android_ad_start_up.html">previous tutorial</a>, <a href="android_ad_start_up.html#permission">add permissions configuration</a> and Activity
+configuration information
+<p align="center"><a href="index.html">More tutorial of add ad in app</a> &nbsp;&nbsp;<a href="http://shang.qq.com/wpa/qunwpa?idkey=77cede5b3b323b802d818ff476e0c316cfb2c966475e42f02023b2a33d9f8085">qq group 310513042</a> &nbsp;&nbsp;<a href="/index.html">home</a></p>
+
+<div style="display: none"><!-- 用于加载统计代码等隐藏元素 -->
+    <script language="javascript" type="text/javascript" src="http://js.users.51.la/18164801.js"></script>
+    <noscript><a href="http://www.51.la/?18164801" target="_blank"><img
+            alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18164801.asp"
+            style="border:none"/></a></noscript>
+</div>
+</body>
+</html>

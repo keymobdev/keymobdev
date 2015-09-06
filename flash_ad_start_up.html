@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>flash air Application Integration Ads Start Tutorial</title>
+    <meta name="keyword" content="AIR adds advertising, flash air integrated advertising tutorials, air admob integrated tutorials, flex integrated advertising tutorial topics, air application advertising tutorials, advertising ane"/>
+    <meta name="description"
+          content="Introduction flash air advertising sdk tutorial application integrated from the library to get ane used to package the whole process, according to this air integrated advertising tutorials, will be able to successfully integrated admob and other advertising platform, no longer need separate admob tutorials, air gdt tutorials, flash Baidu mobile Alliance access tutorial"/>
+    <link href="doc.css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="doctitle">flash air application adds ads tutorial</h1>
+
+<h2><a name="download">  Download flash air ads management library (Advertising ANE </a>)</h2>
+To display ads in mobile applications need to add ad library to app, 20150801 is the current
+version of Keymob  library , you will find flash air project files and directories in the folder you downloaded, the following resources are Keymob library
+ related. <a href="https://github.com/keymobdev/Adobe-Air-ANE">Download the advertising ANE  library</a>
+<ul>
+  <li>README.md keymob quickly integrate document in English</li>
+    <li>README_zh.md keymob quickly integrate document in Chinese</li>
+    <li>anes
+        <ul>
+            <li>keymob1.0.ane keymob advertising   library</li>
+        </ul>
+    </li>
+    <li>src
+        <ul>
+            <li>com_keymob_sdks keymob default platform</li>
+            <li>biduad_plugin keymob resource of baidu platform </li>
+            <li>gdt_plugin keymob resource of gdt platform</li>
+        </ul>
+    </li>
+</ul>
+<p class="note">Note: the above directory under the src folder  can't modify </p>
+
+<p>AdmobAdapter.jar under folder com_keymob_sdks is the default platform,you can change it to <a href="https://github.com/keymobdev/admob-adapter">other </a></p>
+<h2><a name="install">Add lib to the flash air mobile project</a></h2>
+Add using advertising management library need the following a few steps
+<ol>
+    <li>Copy the keymob1.0.ane to flash air project, and then added it to the build path</li>
+    <li> Copy com_keymob_sdks to flash air project   src folder</li>
+    <li> If you want to use baidu advertising platform, copy biduad_plugin to flash air project   src folder</li>
+    <li> If you want to use widely platform, copy gdt_plugin to flash air project   src folder</li>
+</ol>
+
+<h2><a name="addcode">Add advertising related as3 code</a></h2>
+<h5>1.  import keymob related classes</h5>
+<pre class="code">
+    import com.keymob.*;
+</pre>
+<h5>2.  Initialization Keymob</h5>
+Initialization Keymob library management is the prerequisite to call other advertising functions, the following initialization method is to use the Keymob.com service
+<pre class="code">KeymobAd.getInstance().initFromKeymobService("1",false);</pre>
+<ul>
+    Parameter Description
+    <li>&quot;1&quot; the first parameter is the app ID got from Keymob.com</li>
+    <li>&quot;false&quot;&nbsp;Whether&nbsp;testing&nbsp;mode,&nbsp;set&nbsp;to&nbsp;true when debug,&nbsp;set&nbsp;false when&nbsp;released&nbsp;</li>
+</ul>
+<h5>3. Display advertising</h5>
+Show  the banner ads in the absolute position (0,200)
+<pre class="code">KeymobAd.getInstance().showBannerABS(AdSizes.BANNER, 0, 200);</pre>
+Parameters Description 
+<ul>
+  <li> AdSizes.BANNER the first parameter is size, all the  support  banners size in AdSizes class
+  </li>
+  <li>&quot;0&quot; the second parameter is the location of   x </li>
+  <li>&quot;200&quot; the second parameter is the location of   y</li>
+</ul>
+
+<p> 4.<strong><a name="permission"> Add ads permissions</a></strong></p>
+
+<p>  edit xxx- app.xml To add the necessary permissions  reqired by
+advertising platform</p>
+<pre class="code">
+&lt;!-- base permission --&gt;<br>
+&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;<br>
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot;/&gt;<br>
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot;/&gt;<br>
+&lt;uses-permission android:name=&quot;android.permission.READ_PHONE_STATE&quot;/&gt;<br>
+&lt;!-- base permission for location--&gt;<br>
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_COARSE_LOCATION&quot; /&gt;<br>
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_FINE_LOCATION&quot; /&gt; <br>
+&lt;!-- base permission  required by chartboost and baidu--&gt;<br>
+&lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;/&gt;<br>
+&lt;!-- permission required by mmedia --&gt;<br>
+&lt;uses-permission android:name=&quot;android.permission.RECORD_AUDIO&quot; /&gt;<br>
+&lt;uses-feature android:name=&quot;android.hardware.microphone&quot; android:required=&quot;false&quot; /&gt;
+</pre>
+
+<h5><a name="activity">5. Add the advertising Activity configuration information</a></h5>
+edit xxx-app.xml Add advertising platform to apply the Activity,  app will not be able to
+display ad if not add platform Activity
+<pre class="code">
+    &lt;!-- Admob --&gt;<br>    &lt;meta-data android:name=&quot;com.google.android.gms.version&quot;
+    android:value=&quot;7327000&quot; /&gt;
+    &lt;activity
+    android:name=&quot;com.google.android.gms.ads.AdActivity&quot;
+    android:configChanges=&quot;keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize&quot;
+    android:theme=&quot;@android:style/Theme.Translucent&quot;/&gt;<br>
+    &lt;!-- Amazon Mobile Ads --&gt;
+    &lt;activity android:name=&quot;com.amazon.device.ads.AdActivity&quot;
+    android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;/&gt;
+<p>&lt;!-- InMobi --&gt;
+    &lt;activity android:name=&quot;com.inmobi.androidsdk.IMBrowserActivity&quot;
+    android:configChanges=&quot;keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize&quot;
+    android:theme=&quot;@android:style/Theme.Translucent.NoTitleBar&quot;
+    android:hardwareAccelerated=&quot;true&quot; /&gt;</p><p>&lt;!-- Millennial Media --&gt;
+    &lt;activity android:name=&quot;com.millennialmedia.android.MMActivity&quot;
+    android:theme=&quot;@android:style/Theme.Translucent.NoTitleBar&quot;
+    android:configChanges=&quot;keyboardHidden|orientation|keyboard|screenSize&quot; &gt;&lt;/activity&gt;</p><p>&lt;!-- Keymob --&gt; 
+    &lt;activity android:name=&quot;com.keymob.sdk.core.KeymobActivity&quot; android:theme=&quot;@android:style/Theme.Dialog&quot;
+    android:configChanges=&quot;keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize&quot;
+    /&gt;<br>
+    &lt;!-- baidu --&gt; 
+    &lt;activity android:name=&quot;com.baidu.mobads.AppActivity&quot; android:configChanges=&quot;keyboard|keyboardHidden|orientation&quot;/&gt;</p><p>&lt;!-- adcolony --&gt; 
+    &lt;activity android:name=&quot;com.jirbo.adcolony.AdColonyOverlay&quot; android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;
+    android:theme=&quot;@android:style/Theme.Translucent.NoTitleBar.Fullscreen&quot; /&gt;
+    &lt;activity android:name=&quot;com.jirbo.adcolony.AdColonyFullscreen&quot; android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;
+    android:theme=&quot;@android:style/Theme.Black.NoTitleBar.Fullscreen&quot; /&gt;
+    &lt;activity android:name=&quot;com.jirbo.adcolony.AdColonyBrowser&quot; android:configChanges=&quot;keyboardHidden|orientation|screenSize&quot;&gt;
+    android:theme=&quot;@android:style/Theme.Black.NoTitleBar.Fullscreen&quot; /&gt;</p><p>&lt;!-- guang dian tong --&gt; 
+    &lt;service android:name=&quot;com.qq.e.comm.DownloadService&quot; android:exported=&quot;false&quot;/&gt;
+    &lt;activity android:name=&quot;com.qq.e.ads.ADActivity&quot; android:configChanges=&quot;keyboard|keyboardHidden|orientation|screenSize&quot;/&gt;</p></pre>
+<p align="center"><a href="index.html">More tutorial of add ad in app</a> &nbsp;&nbsp;<a href="http://shang.qq.com/wpa/qunwpa?idkey=77cede5b3b323b802d818ff476e0c316cfb2c966475e42f02023b2a33d9f8085">qq group 310513042</a> &nbsp;&nbsp;<a href="/index.html">home</a></p>
+
+<div style="display: none"><!-- 用于加载统计代码等隐藏元素 -->
+  <script language="javascript" type="text/javascript" src="http://js.users.51.la/18164801.js"></script>
+    <noscript><a href="http://www.51.la/?18164801" target="_blank"><img
+            alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18164801.asp"
+            style="border:none"/></a></noscript>
+</div>
+</body>
+</html>

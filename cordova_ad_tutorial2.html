@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>phonegap display Interstitial advertising Tutorials</title>
+    <meta name="keyword" content="phonegap add Interstitial advertising, cordova integrated Interstitial tutorials, phonegap integrated admob tutorials, phonegap integrated splash screen ads"/>
+    <meta name="description"
+          content="html5 games and applications how integrated Interstitial advertising? This tutorial describes how to obtain management library, how integrated admob platform sdk, how integrated phonegap full-screen advertising, step by step about the Application Integration Ads"/>
+    <link href="doc.css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="doctitle">Phonegap display plaque advertising tutorial</h1>
+
+<h2>The preparation for coding</h2>
+Before reading this tutorial, please read the <a href="cordova_ad_start_up.html">getting started with cordova</a> tutorial to learn <a href="cordova_ad_start_up.html">how to download management library</a>,<a href="cordova_ad_start_up.html"> how to install AD management library</a>
+<h2>Add advertising related Js code</h2>
+<h5>1. Initialization Keymob</h5>
+Initialization Keymob library management is the prerequisite to call other advertising functions, the following initialization method is to use the Keymob.com service
+<pre class="code">keymob.initFromKeymobService("1", true);</pre>
+<ul>
+  Parameter Description
+  <li>&quot;1&quot; the first parameter is the ID Keymob application, at Keymob.com for creating an application
+    ID </li>
+  <li> &quot;true&quot; &quot;false&quot;&nbsp;Whether&nbsp;testing&nbsp;mode,&nbsp;set&nbsp;to&nbsp;true when debug,&nbsp;set&nbsp;false when&nbsp;released</li>
+</ul>
+<h5>2.loading ads</h5>
+<pre class="code">keymob.loadInterstitial();</pre>
+<h5>3.Check whether advertising plaque load successfully</h5>
+<pre class="code">
+    	keymob.isInterstitialReady(function (isReady) {
+            if (isReady) {
+               alert("Interstitial is load success,you can show it now");
+            }
+        });
+</pre>
+<h5>4.display ads</h5>
+<pre class="code">keymob.showInterstitial();</pre>
+<h5>5. Show Interstitial</h5>
+Check whether ad is load successfully is a good practice
+<pre class="code">
+	keymob.isInterstitialReady(function (isReady) {
+            if (isReady) {
+                keymob.showInterstitial();
+            }
+        });
+</pre>
+<h5>6.Monitor advertising events</h5>
+In Interstitial advertising can show at the end of the game or show it manual ,or can be shown when  loaded
+<pre class="code">
+function onAdReceive(message) {
+        if(message.adtype==keymob.AdTypes.INTERSTITIAL){
+            alert(message.adtype + message.adapter+" ,you can show it now");
+        }
+        //keymob.showInterstitial();//show it when received
+    }
+document.addEventListener(keymob.AdEvent.ON_LOADED_SUCCESS, onAdReceive, false);
+</pre>
+<h2>Processing for each platform </h2>
+After add the code, in accordance with the <a href="cordova_ad_start_up.html">previous tutorial</a>,  processing for <a href="cordova_ad_start_up.html#androidnote">android</a> and <a href="cordova_ad_start_up.html#iosnote">ios</a>
+<p align="center"><a href="index.html">More tutorial of add ad in app</a> &nbsp;&nbsp;<a href="http://shang.qq.com/wpa/qunwpa?idkey=77cede5b3b323b802d818ff476e0c316cfb2c966475e42f02023b2a33d9f8085">qq group 310513042</a> &nbsp;&nbsp;<a href="/index.html">home</a></p>
+
+<div style="display: none"><!-- 用于加载统计代码等隐藏元素 -->
+    <script language="javascript" type="text/javascript" src="http://js.users.51.la/18164801.js"></script>
+    <noscript><a href="http://www.51.la/?18164801" target="_blank"><img
+            alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18164801.asp"
+            style="border:none"/></a></noscript>
+</div>
+</body>
+</html>

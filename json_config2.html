@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>广告平台信息配置文件模板</title>
+    <meta name="keyword" content="inmobi广告联盟配置，百度广告联盟配置，admob广告联盟配置，广点通广告配置文件，广告联盟sdk参数设置"/>
+    <meta name="description"
+          content="这是流行常用的广告联盟的参数配置文件备忘，包括百度广告联盟配置信息，admob广告联盟参数设置，广点通广告联盟参数说明，chartboost广告联盟配置，adcolony广告联盟配置等等等等"/>
+    <link href="doc.css" rel="stylesheet"/>
+</head>
+<body>
+<h2 class="doctitle">Advertising platform information configuration file templates</h2>
+Platform parameters in json format as follow
+<pre class="code">
+    	{
+		"isTesting":true,///Whether the test mode
+		"rateModel":1,//Advertising platform collation, 0 means is the priority weights, different platform scale display ads, 1 is the priority order, the platform to display ads in sequence
+		"platforms":[
+		{"class":"AdmobAdapter","priority":90,"key1":"ca-app-pub-xxx/xxx","key2":"ca-app-pub-xxx/xxx"},//admobplatform ,key1 banner ID，key2 full screen id
+		{"class":"AmazonAdapter","priority":20,"key1":"xxx"},//amazonplatform ,key1 appkey
+		{"class":"ChartboostAdapter","priority":40,"key1":"xxx","key2":"xxx"},//chartboostplatform ,key1 appID，key2 signature
+		{"class":"InmobiAdapter","priority":50,"key1":"xxx"},//inmobiplatform ,key1 appid
+		{"class":"IadAdapter","priority":50,"key1":"877393773"},//iadplatform ,android will be automatically ignored 
+		{"class":"KeymobAdapter","priority":50,"key1":"appid"},//keymob.com self -sale ads ，Cross promotion needs
+		{"class":"BaiduAdapter","priority":50,"key1":"appsid","key2":"appsec"},//baiduplatform
+         {"class":"GDTAdapter","priority":50,"key1":"appid","key2":"banner id","param":"full id"},//wide point platform，param is also json's mode {"interstitialID":"full screen ads ID","appWallID":"the wall of applicationID"}
+         {"class":"AdcolonyAdapter","priority":50,"key1":"appid","key2":"full id","param":"video id"},//adcolonyplatform
+		{"class":"MMediaAdapter","priority":10,"key1":"xxx","key2":"xxx"}//mmediaplatform ,key1 banner ID，key2full screen id
+		]
+	}
+</pre>
+<p align="center"><a href="index.html">More tutorial of add ad in app</a> &nbsp;&nbsp;<a href="http://shang.qq.com/wpa/qunwpa?idkey=77cede5b3b323b802d818ff476e0c316cfb2c966475e42f02023b2a33d9f8085">qq group 310513042</a> &nbsp;&nbsp;<a href="/index.html">home</a></p>
+</body>
+</html>

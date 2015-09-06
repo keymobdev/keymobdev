@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Application Integration tutorials flash video ads</title>
+    <meta name="keyword" content="air add video ads, flex integrated advertising tutorials, flash earn money, app insert advertising Tutorials"/>
+    <meta name="description" content="How to integrate advertising in flash applications, learn how to use flash to make money? This tutorial will teach you a step by step integration of video ads in their applications to make money"/>
+    <link href="doc.css" rel="stylesheet"/>
+</head>
+<body>
+<h1 class="doctitle">The flash application plus tutorial video ads</h1>
+
+<h2>The preparation for coding</h2>
+Before reading this tutorial, please read <a href="flash_ad_start_up.html">getting started with flash ad </a>to learn <a href="flash_ad_start_up.html#download">how to get library</a>, <a href="flash_ad_start_up.html#install">how to install  library</a>, <a href="flash_ad_start_up.html#permission">how  configuration platform </a>
+<h2>Add advertising related as3 code</h2>
+<h5>1.Import keymob related classes</h5>
+<pre class="code">
+    import com.keymob.*;
+</pre>
+<h5>2.Set the parameters of each advertising platform</h5>
+Platform parameters in json format as follow
+<pre class="code">
+    	{
+		"isTesting":true,//Whether the test mode
+		"rateModel":1,//Advertising platform collation，0表示priority Is weight, each platform scale display ads, 1 is the priority order, the platform to display ads in sequence
+		"platforms":[
+		{"class":"AdmobAdapter","priority":90,"key1":"ca-app-pub-xxx/xxx","key2":"ca-app-pub-xxx/xxx"},//admob platform ,key1 banner ID，key2 full screen id
+		{"class":"AmazonAdapter","priority":20,"key1":"xxx"},//amazon platform ,key1 appkey
+		{"class":"ChartboostAdapter","priority":40,"key1":"xxx","key2":"xxx"},//chartboost platform ,key1 appID，key2 signature
+		{"class":"InmobiAdapter","priority":50,"key1":"xxx"},//inmobi platform ,key1 appid
+		{"class":"IadAdapter","priority":50,"key1":"877393773"},//iad platform ,androidWill automatically be ignored
+		{"class":"KeymobAdapter","priority":50,"key1":"appid"},//keymob.com Since the sale of advertising, cross promotion needs	
+		{"class":"BaiduAdapter","priority":50,"key1":"appsid","key2":"appsec"},//baidu platform
+    {"class":"GDTAdapter","priority":50,"key1":"appid","key2":"banner id","param":"full id"},//wide point platform
+    {"class":"AdcolonyAdapter","priority":50,"key1":"appid","key2":"full id","param":"video id"},//adcolony platform
+		{"class":"MMediaAdapter","priority":10,"key1":"xxx","key2":"xxx"}//mmedia platform ,key1 banner ID，key2full screen id
+		]
+	}
+
+</pre>
+<h5>2. initialization Keymob</h5>
+Initialization Keymob library management is the prerequisite to call other advertising functions,  initialization Keymob using json config file as follow
+<pre class="code">KeymobAd.getInstance().initFromJSON(jsonString);</pre>
+<ul>
+  Parameter Description
+  <li>jsonString is above json configuration string containing configuration information of each advertising
+  platform </li>
+</ul>
+<h5>4.Load the video advertising</h5>
+<pre class="code">KeymobAd.getInstance().loadVideo();</pre>
+<h5>5.Check whether the video advertising is loaded successfully</h5>
+<pre class="code">KeymobAd.getInstance().isVideoReady();</pre>
+<h5>6.Show video advertising</h5>
+<pre class="code">KeymobAd.getInstance().showVideo();</pre>
+<h5>7.Show Video Appropriately</h5>
+Check whether ad is load successfully is a good practice
+<pre class="code">
+    if(KeymobAd.getInstance().isVideoReady()){
+		KeymobAd.getInstance().showVideo();
+	}
+</pre>
+<h2>Configuration changes</h2>
+After writing the code, in accordance with the<a href="flash_ad_start_up.html"> previous tutorial</a> , add <a href="flash_ad_start_up.html#permission">permissions configuration</a> and<a href="flash_ad_start_up.html#activity"> Activity configuration</a> information
+<p align="center"><a href="index.html">More tutorial of add ad in app</a> &nbsp;&nbsp;<a href="http://shang.qq.com/wpa/qunwpa?idkey=77cede5b3b323b802d818ff476e0c316cfb2c966475e42f02023b2a33d9f8085">qq group 310513042</a> &nbsp;&nbsp;<a href="/index.html">home</a></p>
+
+<div style="display: none"><!-- 用于加载统计代码等隐藏元素 -->
+    <script language="javascript" type="text/javascript" src="http://js.users.51.la/18164801.js"></script>
+    <noscript><a href="http://www.51.la/?18164801" target="_blank"><img
+            alt="&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;" src="http://img.users.51.la/18164801.asp"
+            style="border:none"/></a></noscript>
+</div>
+</body>
+</html>
